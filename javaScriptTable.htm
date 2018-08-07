@@ -1,0 +1,143 @@
+
+<html>
+<head>
+
+<title>Insert title here</title>
+
+<style>
+.contaier{overflow:hidden}
+.tab{float:left;margin-left:50px}
+.tab-2{margin-left:50px;display:block;}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="tab tab-1" >
+
+			<table id="table" border="1">
+			<thead>
+			<tr><th>Fname</th><th>Lname</th><th>Age</th></tr>
+			</thead>
+
+			</table>
+
+		</div>
+	</div>
+
+			<div class = "tab">
+				First name:<input type="text" name="fname" id="fname"/></br>
+				Last name:<input type="text" name="lname" id="lname"/></br>
+				Age:	<input type="text" name="age" id="age"/></br>
+
+					<button onclick="addHtmlTableRow()" id="btn-add">add</button>
+					<button onclick="editHtmlTableSelectedRow()">edit</button>
+					<button onclick="remove()">remove</button>
+					<button onclick="reset()">reset</button>
+
+			</div>
+
+	
+
+<script type="text/javascript">
+
+var rIndex, table=document.getElementById("table");
+
+
+function validation()
+{
+
+var valid=false;
+var fname = document.getElementById("fname").value;
+var lname = document.getElementById("lname").value;
+var age = document.getElementById("age").value;
+
+if(fname === " ")
+{
+alert("please fill fname");
+valid=true;
+return valid;
+}
+return valid;
+}
+
+function reset()
+{
+document.getElementById("fname").value="";
+document.getElementById("lname").value="";
+document.getElementById("age").value="";
+
+}
+
+
+
+
+function addHtmlTableRow()
+{
+	
+	
+	var fname = document.getElementById("fname").value;
+	var lname = document.getElementById("lname").value;
+	var age = document.getElementById("age").value;
+	
+	
+	
+	var newrow= table.insertRow(table.length),
+	cell1=newrow.insertCell(0),
+	cell2=newrow.insertCell(1),
+	cell3=newrow.insertCell(2);
+	
+
+	
+	cell1.innerHTML=fname;
+	cell2.innerHTML=lname;
+	cell3.innerHTML=age;
+
+	selectedRowToInput();
+	
+	
+}
+
+
+function selectedRowToInput()
+{
+	var i;
+
+	for(i=1; i<table.rows.length; i++)
+	{
+
+		table.rows[i].onclick = function()
+		{
+			rIndex = this.rowIndex;
+			document.getElementById("fname").value=this.cells[0].innerHTML;
+			document.getElementById("lname").value=this.cells[1].innerHTML;
+			document.getElementById("age").value=this.cells[2].innerHTML;
+		
+		};
+	}
+
+
+}
+
+
+
+function editHtmlTableSelectedRow()
+{
+var fname = document.getElementById("fname").value,
+	 lname = document.getElementById("lname").value,
+	age = document.getElementById("age").value;
+
+table.rows[rIndex].cells[0].innerHTML=fname;
+table.rows[rIndex].cells[1].innerHTML=lname;
+table.rows[rIndex].cells[2].innerHTML=age;
+
+}
+
+function remove()
+{
+table.deleteRow(rIndex);
+}
+
+</script>
+</body>
+</html>

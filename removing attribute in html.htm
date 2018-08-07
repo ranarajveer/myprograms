@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery Removing Attribute from HTML Element</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".remove-attr").click(function(){            
+            $("a").removeAttr("href");
+        });
+    });
+</script> 
+</head>
+<body>
+    <button type="button" class="remove-attr">Remove Link</button>
+    <a href="#">Demo Link</a>
+</body>
+</html>                            
+
+
